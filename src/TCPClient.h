@@ -14,8 +14,8 @@
 #include <errno.h>
 
 #define IP "127.0.0.1"
-#define BUFFER_MAX 2048
 #define PORT 6378
+#define BUFFER_MAX 1024
 #define MAX_CONNECTION_ATTEMPT_COUNT 10
 #define CONNECTION_ATTEMPT_DELAY_S 1
 
@@ -43,6 +43,7 @@ extern const char *turn_wait_msg;
 extern const char *mid_disconnection_msg;
 extern const char *winner_msg;
 extern const char *loser_msg;
+extern const char *tie_msg;
 
 extern void createClientSocket();
 extern void createClientSocketAddress();

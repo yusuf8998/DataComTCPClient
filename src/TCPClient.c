@@ -15,6 +15,7 @@ const char *turn_wait_msg = "Waiting for other players move...\n";
 const char *mid_disconnection_msg = "The other player has disconnected! Pausing game...\n";
 const char *winner_msg = "You win!\n";
 const char *loser_msg = "You lose!\n";
+const char *tie_msg = "It's a tie!\n";
 
 void clearPacket(packet_t p)
 {
@@ -104,7 +105,7 @@ void attemptConnection()
 // }
 void disconnectClient()
 {
-    printf("Connection terminated...\n");
+    printf("\nConnection terminated...\n");
     close(client_socket);
     game_status = -1;
 }
@@ -116,7 +117,7 @@ void readServer()
     clearPacket(read_buffer);
     if ((valread = receivePacket(client_socket, read_buffer)) == 0 || comparePacket(read_buffer, terminate_msg) == 0)
         disconnectClient();
-    if (containsPacket(read_buffer, turn_msg) == 0 || containsPacket(read_buffer, winner_msg) == 0 || containsPacket(read_buffer, loser_msg) == 0)
+    if (containsPacket(read_buffer, turn_msg) == 0 || containsPacket(read_buffer, winner_msg) == 0 || containsPacket(read_buffer, loser_msg) == 0 || containsPacket(read_buffer, tie_msg) == 0)
     {
         game_status = 1;
     }
